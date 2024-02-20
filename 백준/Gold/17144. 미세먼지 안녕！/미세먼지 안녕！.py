@@ -1,11 +1,4 @@
-from sys import stdin
-
-input = stdin.readline
-
 def spread(room,pos):
-    """
-    Fine dust diffusion result return function
-    """
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
     new_room = [[0] * C for _ in range(R)]
@@ -24,10 +17,6 @@ def spread(room,pos):
     return new_room
 
 def rotate(room,pos):
-    """
-    Fine dust circulation function
-    """
-    # Upward circulation: counterclockwise
     for x in range(pos - 1, 0, -1):
         room[x][0] = room[x - 1][0]
     for y in range(C - 1):
@@ -37,7 +26,6 @@ def rotate(room,pos):
     for y in range(C - 1, 0, -1):
         room[pos][y] = room[pos][y - 1]
 
-    # Downward circulation: clockwise
     for x in range(pos + 1 + 1, R - 1):
         room[x][0] = room[x + 1][0]
     for y in range(C - 1):
@@ -47,7 +35,6 @@ def rotate(room,pos):
     for y in range(C - 1, 0, -1):
         room[pos+1][y] = room[pos+1][y - 1]
 
-    # The wind from the air purifier is reset to 0 because it is free of fine dust.
     room[pos][1] = 0
     room[pos+1][1] = 0
 
@@ -55,9 +42,9 @@ def main():
     global R, C, T
     R, C, T = map(int, input().split())
     room = [list(map(int, input().split())) for _ in range(R)]
-    for i in range(R):
-        if room[i][0] == -1:
-            pos = i
+    for x in range(R):
+        if room[x][0] == -1:
+            pos = x
             break
     for _ in range(T):
         room = spread(room,pos)
