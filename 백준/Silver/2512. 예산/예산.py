@@ -1,7 +1,10 @@
 def maximum_budget(nums: list[int], M: int) -> int:
     nums.sort()
-    start, end = min(nums[0],M//len(nums)), nums[-1]
-
+    if nums[0] >= M//len(nums):
+        return M//len(nums)
+    start, end = nums[0], nums[-1]
+        
+    
     while start <= end:
         mid = (start + end) // 2
 
