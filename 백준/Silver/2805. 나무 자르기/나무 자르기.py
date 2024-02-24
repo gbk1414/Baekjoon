@@ -1,11 +1,14 @@
+import sys
+input = sys.stdin.readline
+
+
 def cutting_wood(tree_list: list[int], M: int) -> int:
     tree_list.sort()
-    start = tree_list[-1]
+    start = tree_list[-1] - M//len(tree_list)
     end = 0
     while start >= end:
         mid = (start+end)//2
-        cut_tree = [x-mid if x > mid else 0 for x in tree_list]
-        if sum(cut_tree) < M:
+        if sum(x-mid if x > mid else 0 for x in tree_list) < M:
             start = mid - 1
         else:
             end = mid + 1
