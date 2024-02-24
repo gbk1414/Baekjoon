@@ -1,22 +1,18 @@
 from collections import deque
 
-def yosepus(que:deque, k:int)->list[int]:
+def yosepus(N: int, K: int) -> list[int]:
+    que = deque(range(1, N + 1))
     answer = []
     while que:
-        for i in range(k):
-            pop_val = que.popleft()
-            if i != k-1:
-                que.append(pop_val)
-            else:
-                answer.append(pop_val)
+        for _ in range(K - 1):
+            que.append(que.popleft())
+        answer.append(que.popleft())
     return answer
 
 def main():
     N, K = map(int, input().split())
-    que = deque([i for i in range(1,N+1)])
-    answer =yosepus(que,K)
-    print("<" + ", ".join(str(x) for x in answer) + ">")
-
+    answer = yosepus(N, K)
+    print("<" + ", ".join(map(str, answer)) + ">")
 
 if __name__ == "__main__":
     main()
