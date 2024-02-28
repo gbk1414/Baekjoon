@@ -1,6 +1,3 @@
-# n = n-1 +n-2
-# 1 2 3 5
-
 MAX_N = 40
 
 
@@ -12,12 +9,12 @@ def fibo(n):
 
 
 def main():
-    fibo_list = fibo(MAX_N)
+    path_list = fibo(MAX_N)
     while True:
         N = int(input())
         if N == 0:
             break
-        print(fibo_list[N])
+        print(path_list[N])
 
 
 if __name__ == "__main__":
