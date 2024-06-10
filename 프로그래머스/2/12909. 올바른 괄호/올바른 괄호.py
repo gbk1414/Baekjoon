@@ -7,9 +7,9 @@ def solution(s):
         if c == "(":
             stack.append(c)
         else:
-            if stack:
+            try:
                 stack.pop()
-            else:
+            except IndexError:
                 return False
     
     if stack:
