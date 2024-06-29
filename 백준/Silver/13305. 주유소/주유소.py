@@ -1,18 +1,21 @@
-def cal_min_price(dist, price):
-    min_price = 10**9 + 1
-    total_cost = 0
-    for i in range(len(dist)):
-        min_price = price[i] if min_price > price[i] else min_price
-        total_cost += min_price * dist[i]
-    return total_cost
+def filter_oil_price_list(N, oil_price_list:list):
+    min_val = float('inf')
+    for i in range(N):
+        if oil_price_list[i] < min_val:
+            min_val = oil_price_list[i]
+        else:
+            oil_price_list[i] = min_val
+    return oil_price_list
 
 
 def main():
     N = int(input())
-    dist = list(map(int, input().split()))
-    price = list(map(int, input().split()))
-    print(cal_min_price(dist, price))
+    dist_list = list(map(int, input().split()))
+    oil_price_list = list(map(int, input().split()))
+    oil_price_list = filter_oil_price_list(N, oil_price_list)
 
+    answer = sum([dist_list[i]* oil_price_list[i] for i in range(N-1)])
+    print(answer)
 
 if __name__ == "__main__":
     main()
